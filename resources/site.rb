@@ -17,7 +17,7 @@ attribute :template,          :kind_of => String
 attribute :min_instances,     :kind_of => Integer
 attribute :max_body_size,     :kind_of => String
 attribute :env,               :kind_of => String
-attribute :env_vars,          :kind_of => [Hash], :default => []
+attribute :env_vars,          :kind_of => Array, :default => []
 attribute :user,              :kind_of => String
 attribute :custom,            :kind_of => Hash
 attribute :maintenance_page,  :kind_of => String
