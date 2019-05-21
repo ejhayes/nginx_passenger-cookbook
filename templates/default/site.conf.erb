@@ -17,8 +17,28 @@ server {
         <% else %>
         passenger_enabled on;
 
+        <% if @resource.app_type %>
+        passenger_app_type <%= @resource.app_type %>;
+        <% end %>
+
+        <% if @resource.startup_file %>
+        passenger_startup_file <%= @resource.startup_file %>;
+        <% end %>
+
+        <% if @resource.sticky_sessions %>
+        passenger_sticky_sessions on;
+        <% end %>
+
         <% if @resource.ruby %>
         passenger_ruby <%= @resource.ruby %>;
+        <% end %>
+
+        <% if @resource.nodejs %>
+        passenger_nodejs <%= @resource.nodejs %>;
+        <% end %>
+
+        <% if @resource.python %>
+        passenger_python <%= @resource.python %>;
         <% end %>
 
         root <%= @resource.dir %>/public;
@@ -31,6 +51,10 @@ server {
 
         <% if @resource.user %>
         passenger_user "<%= @resource.user %>";
+        <% end %>
+
+        <% @resource.env_vars.each do |env_var| >
+        passenger_env_var <%= env_var.key %> <%= env_var.value %>''
         <% end %>
 
         passenger_min_instances <%= @resource.min_instances || node.nginx_passenger.site_min_instances %>;
@@ -83,8 +107,28 @@ server {
         <% else %>
         passenger_enabled on;
 
+        <% if @resource.app_type %>
+        passenger_app_type <%= @resource.app_type %>;
+        <% end %>
+
+        <% if @resource.startup_file %>
+        passenger_startup_file <%= @resource.startup_file %>;
+        <% end %>
+
+        <% if @resource.sticky_sessions %>
+        passenger_sticky_sessions on;
+        <% end %>
+
         <% if @resource.ruby %>
         passenger_ruby <%= @resource.ruby %>;
+        <% end %>
+
+        <% if @resource.nodejs %>
+        passenger_nodejs <%= @resource.nodejs %>;
+        <% end %>
+
+        <% if @resource.python %>
+        passenger_python <%= @resource.python %>;
         <% end %>
 
         root <%= @resource.dir %>/public;
@@ -97,6 +141,10 @@ server {
 
         <% if @resource.user %>
         passenger_user "<%= @resource.user %>";
+        <% end %>
+
+        <% @resource.env_vars.each do |env_var| >
+        passenger_env_var <%= env_var.key %> <%= env_var.value %>''
         <% end %>
 
         passenger_min_instances <%= @resource.min_instances || node.nginx_passenger.site_min_instances %>;
@@ -122,4 +170,8 @@ server {
     <% end %>
 }
 
+<% end %>
+
+<% if @resource.pre_start_url %>
+passenger_pre_start <%= @resource.pre_start_url %>;
 <% end %>

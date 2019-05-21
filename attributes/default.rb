@@ -8,6 +8,7 @@ default.nginx_passenger.catch_default         = false
 default.nginx_passenger.log_dir               = "/var/log/nginx"
 default.nginx_passenger.certs_dir             = "/etc/nginx/certs"
 default.nginx_passenger.ruby                  = "/usr/bin/ruby"
+default.nginx_passenger.nodejs                  = "/usr/bin/node"
 default.nginx_passenger.max_pool_size         = 8
 default.nginx_passenger.max_instances_per_app = 0
 default.nginx_passenger.min_instances         = 2
